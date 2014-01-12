@@ -1,0 +1,7 @@
+b = Brewery.new name:"Kumpulan panimo", year:2012
+b.save
+b = Brewery.find_by name:"Kumpulan panimo"
+b.year = 2014
+b.save
+b = Brewery.find_by name:"Kumpulan panimo"
+b.destroy
