@@ -5,3 +5,26 @@ b.year = 2014
 b.save
 b = Brewery.find_by name:"Kumpulan panimo"
 b.destroy
+
+
+
+b1 = Brewery.create name:"Hartwall", year:2000
+b1.beers.create name:"t1", style:"Lager"
+
+b = Beer.new name:"t2", style:"Lager"
+b1.beers << b
+
+b = Beer.new name:"t3", style:"Lager"
+b.brewery = b1
+b.save
+
+ b1
+=> #<Brewery id: 4, name: "Hartwall", year: 2000, created_at: "2014-01-12 13:08:31", updated_at: "2014-01-12 13:08:31">
+
+b1.destroy
+
+oluet = Beer.where brewery_id: 4
+
+for olut in oluet do
+  olut.destroy
+end
