@@ -50,10 +50,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/breweries/show.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="19" selection-start="117" selection-end="117" vertical-scroll-proportion="0.18696187" vertical-offset="0" max-vertical-offset="813">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/breweries/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="606" selection-end="606" vertical-scroll-proportion="0.64125" vertical-offset="0" max-vertical-offset="800">
+            <state line="27" column="0" selection-start="606" selection-end="606" vertical-scroll-proportion="-18.321428" vertical-offset="0" max-vertical-offset="665">
               <folding />
             </state>
           </provider>
@@ -101,6 +110,7 @@
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/testing" />
         <option value="$PROJECT_DIR$/app/views/breweries/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/breweries/show.html.erb" />
       </list>
     </option>
   </component>
@@ -485,6 +495,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/breweries/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="606" selection-end="606" vertical-scroll-proportion="-18.321428" vertical-offset="0" max-vertical-offset="665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/breweries_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1520">
@@ -492,9 +509,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/breweries/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/breweries/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="606" selection-end="606" vertical-scroll-proportion="0.64125" vertical-offset="0" max-vertical-offset="800">
+        <state line="8" column="19" selection-start="117" selection-end="117" vertical-scroll-proportion="0.18696187" vertical-offset="0" max-vertical-offset="813">
           <folding />
         </state>
       </provider>
