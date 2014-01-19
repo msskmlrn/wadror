@@ -8,6 +8,7 @@ class RatingsController < ApplicationController
   end
 
   def create
+    debugger
     raise
   end
 end
