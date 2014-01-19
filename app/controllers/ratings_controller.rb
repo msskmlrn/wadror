@@ -8,7 +8,6 @@ class RatingsController < ApplicationController
   end
 
   def create
-    debugger
-    raise
+    Rating.create params.require(:rating).permit(:score, :beer_id)
   end
 end
