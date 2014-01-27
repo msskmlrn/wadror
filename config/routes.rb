@@ -7,6 +7,8 @@ Ratebeer::Application.routes.draw do
 
   resources :ratings, :only => [:index, :new, :create, :destroy]
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   root 'breweries#index'
 
   get 'signup', to: 'users#new'
