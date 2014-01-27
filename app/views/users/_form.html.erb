@@ -11,12 +11,20 @@
     </div>
   <% end %>
 
+    <% if @user.new_record? %>
+        <div class="field">
+          <%= f.label :username %><br>
+          <%= f.text_field :username %>
+        </div>
+    <% end %>
+
     <div class="field">
-      <%= f.label :username %><br>
-      <%= f.text_field :username %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
+      <% if @user.new_record? %>
+          <%= f.label :password %><br />
+      <% else %>
+          <%= f.label 'New password' %><br />
+      <% end %>
+
       <%= f.password_field :password %>
     </div>
     <div class="field">
