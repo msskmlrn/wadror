@@ -21,7 +21,7 @@
 
 <% if @user.ratings.empty? %>
     <p>none so far</p>
-<% end %>
+<% else %>
 
 <ul>
   <% @user.ratings.each do |rating| %>
@@ -35,6 +35,8 @@
 
 <p>Favorite style: <%= @user.favorite_style %></p>
 <p>Favorite brewery: <%= @user.favorite_brewery.name %></p>
+
+<% end %>
 
 <% if @user == current_user %>
     <%= link_to 'Edit', edit_user_path(@user) %> |
