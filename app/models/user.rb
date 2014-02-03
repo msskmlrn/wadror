@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true,
             length: { minimum: 3, maximum: 15 }
 
-  validates :password,
-            length: { minimum: 4 },
-            format: { with: /(?=.*\d)(?=.*[A-Z])/ }
+  validates :password, length: { minimum: 3 },
+            format: { with: /.*(\d.*[A-Z]|[A-Z].*\d).*/,
+                      message: "should contain a uppercase letter and a number" }
 
   has_many :ratings   # käyttäjällä on monta ratingia
 end
