@@ -74,10 +74,6 @@ describe User do
     end
   end
 
-  #Tee seuraavaksi TDD-tyylillä User-olioille metodi favorite_style,
-  # joka palauttaa tyylin, jonka oluet ovat saaneet käyttäjältä keskimäärin
-  # korkeimman reittauksen. Lisää käyttäjän sivulle tieto käyttäjän mielityylistä.
-
   describe "favorite style" do
     let(:user){FactoryGirl.create(:user) }
 
@@ -89,21 +85,48 @@ describe User do
       expect(user.favorite_style).to eq(nil)
     end
 
-    #it "is the only style if only one style" do
-    #  beer = create_beer_with_rating(10, user)
+    it "is the only style if only one style" do
+      beer = create_beer_with_rating_and_style(10, "Lager", user)
 
-    #  expect(user.favorite_style).to eq(beer.style)
-    #end
+      expect(user.favorite_style).to eq("Lager")
+    end
 
-    #it "is the one with the highest average rating if several rated" do
-    #  create_beers_with_ratings_and_style(10, 20, 15, 7, "Lager", user)
-    #  create_beers_with_ratings_and_style(11, 21, 16, 8, "Porter", user)
-    #  best = create_beers_with_ratings_and_style(50, "Lager", user)
+    it "is the one with the highest average rating if several rated" do
+      create_beers_with_ratings_and_style(10, 20, 15, 7, "Lager", user)
+      create_beers_with_ratings_and_style(11, 21, 16, 8, "Porter", user)
+      best = create_beers_with_ratings_and_style(50, "Lager", user)
 
-    #  expect(user.favorite_style).to eq(best.style)
-    #end
+      expect(user.favorite_style).to eq("Lager")
+    end
+  end
+
+  describe "favorite brewery" do
+    let(:user){FactoryGirl.create(:user) }
+
+    it "has a method for determining the favorite brewery" do
+      user.should respond_to :favorite_brewery
+    end
+
+    it "without ratings does not have a favourite brewery" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the only brewery if only one brewery" do
+      beer = create_beer_with_rating(10, user)
+      expect(user.favorite_brewery).to eq(beer.brewery)
+    end
+
+    it "is the one with the highest average rating if several rated" do
+      brewery1 = FactoryGirl.create(:brewery)
+      brewery2 = FactoryGirl.create(:brewery)
+      create_beers_with_ratings_and_brewery(10, 20, 15, 7, brewery1, user)
+      create_beers_with_ratings_and_brewery(11, 21, 16, 8, brewery2, user)
+
+      expect(user.favorite_brewery).to eq(brewery2)
+    end
 
   end
+
 
 end # describe User
 
@@ -130,3 +153,17 @@ def create_beers_with_ratings_and_style(*scores, style, user)
     create_beer_with_rating_and_style(score, style, user)
   end
 end
+
+def create_beer_with_rating_and_brewery(score, brewery, user)
+  beer = FactoryGirl.create(:beer, brewery: brewery)
+  FactoryGirl.create(:rating, score: score, beer: beer, user: user)
+  beer
+end
+
+def create_beers_with_ratings_and_brewery(*scores, brewery, user)
+  for score in scores
+    create_beer_with_rating_and_brewery(score, brewery, user)
+  end
+end
+
+
