@@ -55,3 +55,7 @@ gem 'debugger', group: [:development, :test]
 gem 'byebug', group: [:development, :test]
 
 gem 'bcrypt-ruby', '~> 3.1.2'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.1'
+end
