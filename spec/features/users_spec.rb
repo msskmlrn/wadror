@@ -4,7 +4,7 @@ include OwnTestHelper
 
 describe "User" do
   before :each do
-    FactoryGirl.create :user
+    @user = FactoryGirl.create :user
   end
 
   describe "who has signed up" do
@@ -33,5 +33,24 @@ describe "User" do
     expect{
       click_button('Create User')
     }.to change{User.count}.by(1)
+  end
+
+  describe "favorites" do
+    it "do not exists when no ratings have been given" do
+      sign_in(username:"Pekka", password:"Foobar1")
+      expect(page).to have_content 'has not yet made ratings'
+      expect(page).not_to have_content("Favorite style")
+      expect(page).not_to have_content("Favorite brewery")
+    end
+
+    it "exist when there is at least one rating" do
+      brewery = FactoryGirl.create :brewery, name: "Koff"
+      beer = FactoryGirl.create :beer, name:"iso 3", brewery:brewery
+      rating = FactoryGirl.create :rating, beer: beer, score: 10, user: @user
+
+      visit user_path(@user)
+      expect(page).to have_content("Favorite style")
+      expect(page).to have_content("Favorite brewery")
+    end
   end
 end
