@@ -50,4 +50,32 @@ describe "Rating" do
     end
 
   end
+
+
+  describe "on the user page" do
+
+    it "shows no ratings when there are none" do
+      visit user_path(user)
+      expect(page).to have_content "#{user.username}"
+      expect(page).to have_content 'has not yet made ratings'
+    end
+
+    it "shows rating when there is one" do
+      user.ratings << FactoryGirl.create(:rating, beer: beer1)
+
+      visit user_path(user)
+      expect(page).to have_content "#{user.username}"
+      expect(page).to have_content 'has made 1 rating'
+    end
+
+    it "shows rating when there are some" do
+      user.ratings << FactoryGirl.create(:rating, beer: beer1)
+      user.ratings << FactoryGirl.create(:rating, beer: beer2)
+
+      visit user_path(user)
+      expect(page).to have_content "#{user.username}"
+      expect(page).to have_content 'has made 2 ratings'
+    end
+
+  end
 end
