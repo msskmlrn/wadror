@@ -17,4 +17,15 @@ class User < ActiveRecord::Base
                       message: "should contain a uppercase letter and a number" }
 
   has_many :ratings   # käyttäjällä on monta ratingia
+
+  def favorite_beer
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+    style_ratings = ratings.group_by { |rating| rating.beer.style}
+
+  end
 end
