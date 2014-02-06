@@ -37,6 +37,8 @@ describe "Breweries page" do
 
   describe "creating new beer" do
     it "should add new beer with valid data" do
+      FactoryGirl.create :user
+      sign_in(username:"Pekka", password:"Foobar1")
       brewery = FactoryGirl.create(:brewery)
       visit new_beer_path
 
@@ -51,6 +53,8 @@ describe "Breweries page" do
     end
 
     it "should not add new beer with invalid data" do
+      FactoryGirl.create :user
+      sign_in(username:"Pekka", password:"Foobar1")
       brewery = FactoryGirl.create(:brewery)
       visit new_beer_path
 
