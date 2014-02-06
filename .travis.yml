@@ -13,3 +13,4 @@ deploy:
   app: pacific-ridge-5708
   on:
     repo: msskmlrn/wadror
+  run: "rake db:migrate"
