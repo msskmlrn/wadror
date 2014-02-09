@@ -36,8 +36,8 @@ describe "Rating" do
       beer1.ratings << FactoryGirl.create(:rating)
 
       visit beer_path(beer1)
-      expect(page).to have_content "Has 1 rating"
-      expect(page).to have_content "average 10.0"
+      expect(page).to have_content "has been rated 1 times"
+      expect(page).to have_content "average score 10.0"
     end
 
     it "shows rating when there are some" do
@@ -45,8 +45,8 @@ describe "Rating" do
       beer1.ratings << FactoryGirl.create(:rating2)
 
       visit beer_path(beer1)
-      expect(page).to have_content "Has 2 ratings"
-      expect(page).to have_content "average 15.0"
+      expect(page).to have_content "has been rated 2 times"
+      expect(page).to have_content "average score 15.0"
     end
 
   end
