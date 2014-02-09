@@ -138,6 +138,7 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.7.0, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="columnize (v0.3.6, rbenv: 2.0.0-p353) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="crack (v0.4.2, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debugger (v1.6.5, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debugger-linecache (v1.2.0, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debugger-ruby_core_source (v1.3.1, rbenv: 2.0.0-p353) [gem]" level="application" />
@@ -176,6 +177,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.14.5, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v2.14.5, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v2.14.1, rbenv: 2.0.0-p353) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="safe_yaml (v1.0.1, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.2.14, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v4.0.1, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sdoc (v0.4.0, rbenv: 2.0.0-p353) [gem]" level="application" />
@@ -191,6 +193,7 @@
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.2.1, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.38, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.4.0, rbenv: 2.0.0-p353) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="webmock (v1.17.2, rbenv: 2.0.0-p353) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="xpath (v2.0.0, rbenv: 2.0.0-p353) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
