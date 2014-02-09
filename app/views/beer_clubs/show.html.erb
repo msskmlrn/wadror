@@ -15,10 +15,13 @@
   <% end %>
 </ul>
 
-<% unless @beer_club.members.include? current_user %>
-    <%= form_for(@membership) do |f| %>
-        <%= f.hidden_field :beer_club_id %>
-        <%= f.submit 'Join' %>
+<% if current_user %>
+
+    <% unless @beer_club.members.include? current_user %>
+        <%= form_for(@membership) do |f| %>
+            <%= f.hidden_field :beer_club_id %>
+            <%= f.submit 'Join' %>
+        <% end %>
     <% end %>
 <% end %>
 
