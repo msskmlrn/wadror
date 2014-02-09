@@ -14,14 +14,13 @@
       </thead>
       <% @places.each do |place| %>
           <tr>
-            <td><%= place.id %></td>
-            <td><%= link_to place.name, place_path(place.id) %></td>
-            <td><%= place.status %></td>
-            <td><%= place.street %></td>
-            <td><%= place.city %></td>
-            <td><%= place.zip %></td>
-            <td><%= place.country %></td>
-            <td><%= place.overall %></td>
+            <% Place.rendered_fields.each do |field| %>
+                <% if field.to_s == ('name') %>
+                    <td><%= link_to place.send(field), place_path(place.id) %></td>
+                <% else %>
+                    <td><%= place.send(field) %></td>
+                <% end %>
+            <% end %>
           </tr>
       <% end %>
     </table>
