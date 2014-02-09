@@ -1,0 +1,12 @@
+<% unless @place.nil? %>
+
+    <h1><%= @place.name %></h1>
+
+    <p><%= @place.street %></p>
+    <p><%= @place.zip %> <%= @place.city %></p>
+
+    <iframe src='<%= @place.blogmap %>' style='width: 500px; height: 300px; border: 0;'></iframe>
+
+<% else %>
+    <p>No place found.</p>
+<% end %>
