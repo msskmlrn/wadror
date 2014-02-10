@@ -40,11 +40,12 @@ describe "Breweries page" do
       FactoryGirl.create :user
       sign_in(username:"Pekka", password:"Foobar1")
       brewery = FactoryGirl.create(:brewery)
+      style = FactoryGirl.create(:style)
       visit new_beer_path
 
       fill_in('beer_name', with:'Test')
 
-      select('Lager', from: 'beer_style')
+      select(style.name, from: 'beer_style_id')
       select(brewery.name, from: 'beer_brewery_id')
 
       expect{
@@ -56,9 +57,10 @@ describe "Breweries page" do
       FactoryGirl.create :user
       sign_in(username:"Pekka", password:"Foobar1")
       brewery = FactoryGirl.create(:brewery)
+      style = FactoryGirl.create(:style)
       visit new_beer_path
 
-      select('Lager', from: 'beer_style')
+      select(style.name, from: 'beer_style_id')
       select(brewery.name, from: 'beer_brewery_id')
 
       expect{
