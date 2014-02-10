@@ -169,5 +169,3 @@ def create_beers_with_ratings_and_brewery(*scores, brewery, user)
     create_beer_with_rating_and_brewery(score, brewery, user)
   end
 end
-
-
