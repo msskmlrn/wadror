@@ -1,7 +1,11 @@
 class BeermappingApi
   def self.places_in(city)
     city = city.downcase
-    Rails.cache.fetch(city, :expires_in => 1.week) { fetch_places_in(city) }
+    Rails.cache.fetch(city, expires_in:expiry_time) { fetch_places_in(city) }
+  end
+
+  def self.find(id, city)
+    places_in(city).select{ |p| p.id==id.to_s }.first
   end
 
   private
@@ -20,23 +24,12 @@ class BeermappingApi
     end
   end
 
-  def self.find(id)
-    Rails.cache.fetch(id, :expires_in => 1.week) { fetch_place(id) }
-  end
-
-  def self.fetch_place(id)
-    url = "http://beermapping.com/webservice/locquery/#{key}/"
-
-    response = HTTParty.get "#{url}#{ERB::Util.url_encode(id)}"
-    place = response.parsed_response['bmp_locations']['location']
-
-    return nil if place.is_a?(Hash) and place['id'].nil?
-
-    Place.new(place)
-  end
-
-
   def self.key
     Settings.beermapping_apikey
+  end
+
+
+  def self.expiry_time
+    1.week
   end
 end

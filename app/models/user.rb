@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     end
     rating_pairs.sort_by { |s| s.last }.last.first
   end
-  
+
   def rated(category)
     ratings.map{ |r| r.beer.send(category) }.uniq
   end
