@@ -27,6 +27,8 @@ Ratebeer::Application.routes.draw do
   get 'places', to: 'places#index'
   post 'places', to:'places#search'
 
+  get 'beerlist', to:'beers#list'
+
   #get 'kaikki_bisset', to: 'beers#index'
   #get 'ratings', to: 'ratings#index'
   #get 'ratings/new', to:'ratings#new'

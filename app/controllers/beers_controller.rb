@@ -4,6 +4,9 @@ class BeersController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_signed_in_as_admin, only: [:destroy]
 
+  def list
+  end
+
   # GET /beers
   # GET /beers.json
   def index
