@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
 
   def favorite_beer
     return nil if ratings.empty?
-    #ratings.sort_by(&:score).last.beer
     ratings.order(score: :desc).limit(1).first.beer
   end
 
@@ -29,6 +28,8 @@ class User < ActiveRecord::Base
     favorite :style
   end
 
+  private
+
   def favorite(category)
     return nil if ratings.empty?
     rating_pairs = rated(category).inject([]) do |pairs, item|
@@ -36,9 +37,7 @@ class User < ActiveRecord::Base
     end
     rating_pairs.sort_by { |s| s.last }.last.first
   end
-
-  #private
-
+  
   def rated(category)
     ratings.map{ |r| r.beer.send(category) }.uniq
   end

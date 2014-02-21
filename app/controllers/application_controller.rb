@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_signed_in_as_admin
-    redirect_to signin_path, notice:'you need to be admin' unless current_user.admin
+    ensure_that_signed_in
+    redirect_to :back, notice:'operation permitted only for admin users' unless current_user.admin?
   end
 end
