@@ -3,6 +3,9 @@
 <h2>
   <strong>Name:</strong>
   <%= @brewery.name %>
+  <% if not @brewery.active  %>
+      <span class="label label-info">retired</span>
+  <% end %>
 </h2>
 
 <p>

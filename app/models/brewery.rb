@@ -9,6 +9,9 @@ class Brewery < ActiveRecord::Base
                                                      only_integer: true }
   validate :year_must_be_less_than_current_year
 
+  scope :active, -> { where active:true }
+  scope :retired, -> { where active:[nil,false] }
+
   def year_must_be_less_than_current_year
     if year > Date.today.year
       errors.add(:year, "can't be in the future")
