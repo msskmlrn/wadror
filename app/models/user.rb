@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
     favorite :style
   end
 
+  def self.top(n)
+    sorted_by_number_of_ratings_in_desc_order = User.all.sort_by{ |b| -(b.ratings.count||0) }
+    sorted_by_number_of_ratings_in_desc_order.take(n)
+  end
+
   private
 
   def favorite(category)
