@@ -11,6 +11,32 @@
 <h3>Best styles</h3>
 <%= render 'list', name: "styles", items: @top_styles %>
 
+<h3>Most active users</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Favorite beer</th>
+    <th>Preferred style</th>
+    <th>Favorite Brewery</th>
+    <th>Ratings</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @top_users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><%= link_to user.favorite_beer, user.favorite_beer %></td>
+        <td><%= link_to user.favorite_style, user.favorite_style %></td>
+        <td><%= link_to user.favorite_brewery.name, user.favorite_brewery %></td>
+        <td><%= user.ratings.count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
 <h3>Last ratings</h3>
 <ul>
 <% @last_ratings.each do |rating| %>
