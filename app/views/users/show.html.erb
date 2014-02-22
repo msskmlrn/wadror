@@ -11,8 +11,18 @@
 <% if @user.beer_clubs.any? %>
     <p>
       member of
-      <% @user.beer_clubs.each do |club| %>
-          <%= link_to club.name, club %>
+      <% @user.memberships.each do |club| %>
+          <% if club.confirmed? %>
+              <%= link_to club.beer_club.name, club.beer_club %>
+          <% end %>
+       <% end %>
+    </p>
+    <p>
+      applied membership of
+      <% @user.memberships.each do |club| %>
+          <% if not club.confirmed? %>
+              <%= link_to club.beer_club.name, club.beer_club %>
+          <% end %>
       <% end %>
     </p>
 <% end %>

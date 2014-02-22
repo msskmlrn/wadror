@@ -5,4 +5,7 @@ class Membership < ActiveRecord::Base
   validates :user, uniqueness: { scope: :beer_club,
                                  message: "can't join the same club twice" }
 
+  scope :unconfirmed, -> { where confirmed:[nil,false] }
+  scope :confirmed, -> { where confirmed: true}
+
 end

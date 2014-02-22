@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_membership, only: [:show, :edit, :update, :destroy, :confirm_membership]
   before_action :ensure_that_signed_in, except: [:index, :show]
 
   # GET /memberships
@@ -63,6 +63,15 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to memberships_url }
       format.json { head :no_content }
+    end
+  end
+
+  def confirm_membership
+    if @membership.beer_club.members.include? current_user
+      @membership.update_attribute :confirmed, true
+      redirect_to :back, notice:"Membership confirmed for user #{@membership.user.username}"
+    else
+      redirect_to :back, notice: "Only a confirmed member of the club can confirm memberships."
     end
   end
 

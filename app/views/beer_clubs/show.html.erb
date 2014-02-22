@@ -10,19 +10,36 @@
 <h3>Members:</h3>
 
 <ul>
-  <% @beer_club.members.each do |member| %>
-      <li><%= link_to member.username, member %></li>
+  <% @beer_club.memberships.each do |membership| %>
+      <% if membership.confirmed? %>
+        <li><%= link_to membership.user.username, membership.user %></li>
+      <% end %>
   <% end %>
 </ul>
 
 <% if current_user %>
 
-    <% unless @beer_club.members.include? current_user %>
+    <% unless current_user.memberships.find_by(beer_club_id: @beer_club.id) %>
         <%= form_for(@membership) do |f| %>
             <%= f.hidden_field :beer_club_id %>
             <%= f.submit 'Join' %>
         <% end %>
     <% end %>
+
+    <% if current_user.memberships.find_by(beer_club_id: @beer_club.id) && current_user.memberships.find_by(beer_club_id: @beer_club.id).confirmed? %>
+        <% if @beer_club.memberships.find_by(confirmed: nil) %>
+            <h3>Outstanding applications</h3>
+            <ul>
+              <% @beer_club.memberships.each do |member| %>
+                  <% unless member.confirmed? %>
+                      <li><%= member.user.username %>
+                      <%= link_to "Confirm", confirm_membership_membership_path(member), method: :post, class: "btn btn-primary btn-xs" %></li>
+                  <% end %>
+              <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+
 <% end %>
 
 <br>

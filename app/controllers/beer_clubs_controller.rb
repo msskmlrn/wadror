@@ -14,6 +14,8 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.beer_club = @beer_club
+    @unconfirmed_members = Membership.unconfirmed
+    @confirmed_members = Membership.confirmed
   end
 
   # GET /beer_clubs/new
@@ -29,6 +31,7 @@ class BeerClubsController < ApplicationController
   # POST /beer_clubs.json
   def create
     @beer_club = BeerClub.new(beer_club_params)
+    @beer_club.memberships << Membership.new( user: current_user, confirmed: true)
 
     respond_to do |format|
       if @beer_club.save

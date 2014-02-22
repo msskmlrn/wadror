@@ -5,4 +5,7 @@ class BeerClub < ActiveRecord::Base
   def member?(user)
     members.include? user
   end
+
+  def approver?
+  end
 end
