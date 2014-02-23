@@ -2,6 +2,7 @@ class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in, except: [:index, :show, :nglist]
   before_action :ensure_that_signed_in_as_admin, only: [:destroy]
+  before_action :skip_if_cached, only:[:index]
 
   def nglist
   end
@@ -11,6 +12,15 @@ class BreweriesController < ApplicationController
   def index
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
+
+    case @order
+      when 'name' then
+        @active_breweries.sort_by!{ |b| b.name } and
+        @retired_breweries.sort_by!{ |b| b.name }
+      when 'year' then
+        @active_breweries.sort_by!{ |b| b.year } and
+        @retired_breweries.sort_by!{ |b| b.year }
+    end
   end
 
   # GET /breweries/1
@@ -33,7 +43,7 @@ class BreweriesController < ApplicationController
   # POST /breweries.json
   def create
     @brewery = Brewery.new(brewery_params)
-
+    expire_list
     respond_to do |format|
       if @brewery.save
         format.html { redirect_to @brewery, notice: 'Brewery was successfully created.' }
@@ -48,6 +58,7 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    expire_list
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -63,6 +74,7 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1.json
   def destroy
     @brewery.destroy
+    expire_list
     respond_to do |format|
       format.html { redirect_to breweries_url }
       format.json { head :no_content }
@@ -79,14 +91,23 @@ class BreweriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_brewery
-      @brewery = Brewery.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_brewery
+    @brewery = Brewery.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def brewery_params
-      params.require(:brewery).permit(:name, :year, :active)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def brewery_params
+    params.require(:brewery).permit(:name, :year, :active)
+  end
+
+  def expire_list
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
+  end
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "brewerylist-#{params[:order]}"  )
+  end
 
 end
