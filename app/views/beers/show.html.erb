@@ -1,3 +1,5 @@
+<% cache @beer do %>
+
 <h2> <%= @beer %> </h2>
 
 <p>
@@ -11,6 +13,10 @@
 <% else %>
     <p>has been rated <%= @beer.ratings.count %> times, average score <%= round(@beer.average_rating) %></p>
 <% end %>
+
+<% end %>
+
+<!- cachaamaton osa >
 
 <% if current_user %>
 

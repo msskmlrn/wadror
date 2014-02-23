@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% cache @brewery do %>
+
 <h2>
   <strong>Name:</strong>
   <%= @brewery.name %>
@@ -29,6 +31,8 @@
     <p>beers of the brewery have not yet been rated! </p>
 <% else %>
     Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= round(@brewery.average_rating) %>
+<% end %>
+
 <% end %>
 
 <br>
