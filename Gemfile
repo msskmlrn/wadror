@@ -80,3 +80,5 @@ gem 'jquery-turbolinks'
 gem 'selenium-webdriver'
 
 gem 'database_cleaner', '< 1.1.0'
+
+gem 'rack-mini-profiler'
